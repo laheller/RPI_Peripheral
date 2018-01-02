@@ -1,0 +1,5 @@
+Name: lcd1602i2c
+Description: 
+Version: 0.1
+Libs: -L"/home/pi/Peripherals/lcd1602i2c/bin/Debug" -llcd1602i2c
+Cflags: -I"/home/pi/Peripherals/lcd1602i2c"

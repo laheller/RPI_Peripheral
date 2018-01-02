@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0ADCB1CB-A825-4981-96C1-C98EEF33AA1B}</ProjectGuid>
+    <Compiler>
+      <Compiler ctype="GccCompiler" />
+    </Compiler>
+    <Language>C</Language>
+    <Target>Bin</Target>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <OutputName>lcd1602i2c</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <LibPaths>
+      <LibPaths>
+        <LibPath>/usr/lib</LibPath>
+      </LibPaths>
+    </LibPaths>
+    <WarningLevel>All</WarningLevel>
+    <ExtraCompilerArguments>-Werror
+-fpic</ExtraCompilerArguments>
+    <ExtraLinkerArguments>-lwiringPi</ExtraLinkerArguments>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="sudo cp -fv ${ProjectDir}/bin/Debug/lib${ProjectName}.so /usr/lib" workingdir="${ProjectDir}" />
+        <Command type="AfterBuild" command="sudo chmod -v 755 /usr/lib/lib${ProjectName}.so" workingdir="${ProjectDir}" />
+        <Command type="AfterBuild" command="sudo ldconfig -v" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <OutputName>lcd1602i2c</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <OptimizationLevel>3</OptimizationLevel>
+    <DefineSymbols>MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="lcd1602i2c.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="lcd1602i2c.c" />
+  </ItemGroup>
+</Project>
